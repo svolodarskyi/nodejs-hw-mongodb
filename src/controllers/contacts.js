@@ -53,10 +53,10 @@ export const deleteContactController = async (req, res, next) => {
   res.status(204).send();
 };
 
-export const upsertStudentController = async (req, res, next) => {
-  const { studentId } = req.params;
+export const upsertContactController = async (req, res, next) => {
+  const { contactId } = req.params;
 
-  const result = await updateContact(studentId, req.body, {
+  const result = await updateContact(contactId, req.body, {
     upsert: true,
   });
 
@@ -70,7 +70,7 @@ export const upsertStudentController = async (req, res, next) => {
   res.status(status).json({
     status,
     message: `Successfully upserted a student!`,
-    data: result.student,
+    data: result.contact,
   });
 };
 
