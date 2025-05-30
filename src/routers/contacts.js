@@ -23,7 +23,7 @@ contactRouter.get(
 
 contactRouter.post('/contacts', ctrlWrapper(createContactController));
 
-contactRouter.delete('/contacts', ctrlWrapper(deleteContactController));
+contactRouter.delete('/contacts/:contactId', ctrlWrapper(deleteContactController));
 
 contactRouter.put('/contacts/:contactId', ctrlWrapper(upsertContactController));
 
