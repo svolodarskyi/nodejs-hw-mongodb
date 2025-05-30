@@ -6,9 +6,21 @@ import {
   getContactById,
   updateContact,
 } from '../services/contacts.js';
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseSortParams } from '../utils/parseSortParams.js';
+import { parseFilterParams } from '../utils/parseFilterParams.js';
 
 export const getContactsController = async (req, res) => {
-  const contacts = await getAllContacts();
+  const { page, perPage } = parsePaginationParams(req.query);
+  const { sortBy, sortOrder } = parseSortParams(req.query);
+  const filter = parseFilterParams(req.query);
+  const contacts = await getAllContacts({
+    page,
+    perPage,
+    sortBy,
+    sortOrder,
+    filter,
+  });
 
   res.status(200).json({
     data: contacts,
@@ -26,6 +38,8 @@ export const getContactByIdController = async (req, res, next) => {
 
   // Відповідь, якщо контакт знайдено
   res.status(200).json({
+    status: 200,
+    message: `Successfully found contact with id ${contactId}!`,
     data: contact,
   });
 };
@@ -61,7 +75,7 @@ export const upsertContactController = async (req, res, next) => {
   });
 
   if (!result) {
-    next(createHttpError(404, 'Student not found'));
+    next(createHttpError(404, 'Contact not found'));
     return;
   }
 
@@ -69,7 +83,7 @@ export const upsertContactController = async (req, res, next) => {
 
   res.status(status).json({
     status,
-    message: `Successfully upserted a student!`,
+    message: `Successfully upserted a contact!`,
     data: result.contact,
   });
 };
@@ -79,13 +93,13 @@ export const patchContactController = async (req, res, next) => {
   const result = await updateContact(contactId, req.body);
 
   if (!result) {
-    next(createHttpError(404, 'Student not found'));
+    next(createHttpError(404, 'Contact not found'));
     return;
   }
 
   res.json({
     status: 200,
-    message: `Successfully patched a student!`,
+    message: `Successfully patched a contact!`,
     data: result.contact,
   });
 };
