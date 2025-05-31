@@ -23,6 +23,8 @@ export const getContactsController = async (req, res) => {
   });
 
   res.status(200).json({
+    status: 200,
+    message: 'Successfully retrieved contacts',
     data: contacts,
   });
 };
