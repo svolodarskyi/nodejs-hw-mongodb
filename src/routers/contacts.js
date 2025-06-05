@@ -17,31 +17,35 @@ import {
 } from '../validation/contacts.js';
 import { validateBody } from '../middlewares/validateBody.js';
 import { isValidId } from '../middlewares/isValidId.js';
+import { authenticate } from '../middlewares/authenticate.js';
+//import { authenticate } from '../middlewares/authenticate.js';
 
-const contactRouter = Router();
+const contactsRouter = Router();
 
-contactRouter.get('/contacts', ctrlWrapper(getContactsController));
+contactsRouter.use(authenticate);
 
-contactRouter.get(
-  '/contacts/:contactId',
+contactsRouter.get('/', ctrlWrapper(getContactsController));
+
+contactsRouter.get(
+  '/:contactId',
   isValidId,
   ctrlWrapper(getContactByIdController),
 );
 
-contactRouter.post(
-  '/contacts',
+contactsRouter.post(
+  '/',
   validateBody(createContactsSchema),
   ctrlWrapper(createContactController),
 );
 
-contactRouter.delete(
-  '/contacts/:contactId',
+contactsRouter.delete(
+  '/:contactId',
   isValidId,
   ctrlWrapper(deleteContactController),
 );
 
-contactRouter.put(
-  '/contacts/:contactId',
+contactsRouter.put(
+  '/:contactId',
   isValidId,
   validateBody(updateContactsSchema),
   ctrlWrapper(upsertContactController),
@@ -49,11 +53,11 @@ contactRouter.put(
 
 //Від PUT методу PATCH відрізняється якраз тим, що
 // ми можемо оновити якесь окреме поле, а не весь ресурс в цілому.
-contactRouter.patch(
-  '/contacts/:contactId',
+contactsRouter.patch(
+  '/:contactId',
   isValidId,
   validateBody(updateContactsSchema),
   ctrlWrapper(patchContactController),
 );
 
-export default contactRouter;
+export default contactsRouter;
