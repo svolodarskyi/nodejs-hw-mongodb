@@ -1,9 +1,7 @@
-// src/middlewares/authenticate.js
-
 import createHttpError from 'http-errors';
 
-import { SessionsCollection } from '../db/models/sessions.js';
-import { UsersCollection } from '../db/models/users.js';
+import { SessionsCollection } from '../db/models/session.js';
+import { UsersCollection } from '../db/models/user.js';
 
 export const authenticate = async (req, res, next) => {
   const authHeader = req.get('Authorization');
@@ -32,7 +30,8 @@ export const authenticate = async (req, res, next) => {
     new Date() > new Date(session.accessTokenValidUntil);
 
   if (isAccessTokenExpired) {
-    next(createHttpError(401, 'Access token expired'));
+      next(createHttpError(401, 'Access token expired'));
+      return;
   }
 
   const user = await UsersCollection.findById(session.userId);
@@ -42,10 +41,7 @@ export const authenticate = async (req, res, next) => {
     return;
   }
 
-  //just need some fields
-  //req.user = user;
-
-  req.user = { id: user._id, name: user.name };
+  req.user = user;
 
   next();
 };

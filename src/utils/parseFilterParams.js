@@ -1,25 +1,39 @@
-const parseBoolean = (value) => {
-  if (typeof value === 'boolean') return value;
+// src/utils/parseFilterParams.js
 
-  if (typeof value === 'string') {
-    const lowered = value.toLowerCase().trim();
-    if (lowered === 'true' || lowered === '1') return true;
-    if (lowered === 'false' || lowered === '0') return false;
+const parseGender = (gender) => {
+  const isString = typeof gender === 'string';
+  if (!isString) return;
+  const isGender = (gender) => ['male', 'female', 'other'].includes(gender);
+
+  if (isGender(gender)) return gender;
+};
+
+const parseNumber = (number) => {
+  const isString = typeof number === 'string';
+  if (!isString) return;
+
+  const parsedNumber = parseInt(number);
+  if (Number.isNaN(parsedNumber)) {
+    return;
   }
 
-  if (typeof value === 'number') {
-    return value === 1;
-  }
-
-  return undefined;
+  return parsedNumber;
 };
 
 export const parseFilterParams = (query) => {
-  const { isFavourite } = query;
+  const { gender, maxAge, minAge, maxAvgMark, minAvgMark } = query;
 
-  const parsedIsFavourite = parseBoolean(isFavourite);
+  const parsedGender = parseGender(gender);
+  const parsedMaxAge = parseNumber(maxAge);
+  const parsedMinAge = parseNumber(minAge);
+  const parsedMaxAvgMark = parseNumber(maxAvgMark);
+  const parsedMinAvgMark = parseNumber(minAvgMark);
 
   return {
-    isFavourite: parsedIsFavourite,
+    gender: parsedGender,
+    maxAge: parsedMaxAge,
+    minAge: parsedMinAge,
+    maxAvgMark: parsedMaxAvgMark,
+    minAvgMark: parsedMinAvgMark,
   };
 };

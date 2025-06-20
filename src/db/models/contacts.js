@@ -1,6 +1,6 @@
-// src/db/models/contacts.js
+ // src/db/models/contacts.js 
 
-import mongoose, { model, Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
 const contactsSchema = new Schema(
   {
@@ -14,27 +14,30 @@ const contactsSchema = new Schema(
     },
     email: {
       type: String,
+      required: false,
+      
     },
     isFavourite: {
       type: Boolean,
+      required: false,
       default: false,
     },
     contactType: {
       type: String,
-      required: true,
       enum: ['work', 'home', 'personal'],
+      required: true,
       default: 'personal',
     },
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
+    userId: { // нова властивість 
+      type: Schema.Types.ObjectId, 
+      ref: 'user',
       required: true,
-    },
-    photo: { type: String },
+    }, 
+    photo: {type: String},
   },
   {
     timestamps: true,
     versionKey: false,
   },
 );
-
-export const ContactsCollection = model('contactscollections', contactsSchema);
+export const ContactsCollection = model('contact', contactsSchema);
