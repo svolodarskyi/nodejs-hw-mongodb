@@ -18,20 +18,20 @@ responses:
     content:
       application/json:
         schema:
-        type: object
-        required:
-          - status
-          - message
-          - data
-        properties:
-          status:
-            type: integer
-            example: 200
-          message:
-            type: string
-            example: Successfully get student
-          data:  
-            $ref: '../../../components/schemas/Contact.yaml'
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully get student
+            data:  
+              $ref: '../../../components/schemas/Contact.yaml'
   '404':
     $ref: '../../../components/responses/404.yaml'
   '400':
