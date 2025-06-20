@@ -50,24 +50,7 @@ requestBody:
         isFavourite: false
 responses:
   200:
-    description: Successfully updated contact details
-    content:
-      application/json:
-        schema:
-          type: object
-          required:
-            - status
-            - message
-            - data
-          properties:
-            status:
-              type: integer
-              example: 200
-            message:
-              type: string
-              example: Successfully get student
-            data:  
-              $ref: '../../../components/schemas/Contact.yaml'
+    $ref: '../../../components/responses/200.yaml'
   '400':
     $ref: '../../../components/responses/400.yaml'
   '404':
