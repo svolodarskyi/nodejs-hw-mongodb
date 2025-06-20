@@ -1,0 +1,63 @@
+summary: Reset user password
+operationId: resetUserPassword
+tags:
+  - Auth
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          token:
+            type: string
+            description: JWT token received via email
+            example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjBjNzJiMmY1ZjFiMmMwMDFjOGU4ZGUzZiIsImlhdCI6MTYyMjMwMjU3NywiZXhwIjoxNjIyMzA2MTM3fQ.PVg3zAYnN2vqkpJGbLJebHETK-3Z0dF3Vop5FOkxg_c'
+          password:
+            type: string
+            description: New password to set
+            example: '17171717'
+        required:
+          - token
+          - password
+
+responses:
+  200:
+    description: Password has been successfully reset
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Password has been successfully reset.
+            data:
+              type: object
+              example: {}
+          required:
+            - status
+            - message
+            - data
+
+  400:
+    $ref: '../../components/responses/400.yaml'
+
+  401:
+    description: Invalid or expired token
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/ErrorResponseSchema.yaml'
+        example:
+          status: 401
+          message: Something went wrong
+          data: Token is expired or invalid.
+
+  404:
+    $ref: '../../components/responses/404.yaml'
+  500:
+    $ref: ../../components/responses/500.yaml

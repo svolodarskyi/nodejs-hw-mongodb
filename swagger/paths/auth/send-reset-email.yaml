@@ -1,0 +1,53 @@
+summary: Send password reset email
+operationId: sendResetEmail
+tags:
+  - Auth
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        type: object
+        properties:
+          email:
+            type: string
+            example: 'user@example.com'
+        required:
+          - email
+responses:
+  200:
+    description: Reset password email has been successfully sent
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Reset password email has been successfully sent.
+            data:
+              type: object
+              example: {}
+          required:
+            - status
+            - message
+            - data
+
+  400:
+    $ref: '../../components/responses/400.yaml'
+
+  404:
+    description: User with provided email was not found
+    content:
+      application/json:
+        schema:
+          $ref: '../../components/schemas/ErrorResponseSchema.yaml'
+        example:
+          status: 404
+          message: Something went wrong
+          data: User not found!
+  500:
+    $ref: ../../components/responses/500.yaml

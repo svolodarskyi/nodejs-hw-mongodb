@@ -1,24 +1,19 @@
-description: Something went wrong
+description: Internal server error. Something went wrong on the server.
 content:
   application/json:
     schema:
       type: object
-      required:
-        - status
-        - message
-        - data
       properties:
         status:
           type: integer
           example: 500
         message:
           type: string
-          example: Something went wrong
+          example: 'Something went wrong'
         data:
-          type: object
-          required:
-            - message
-          properties:
-            message:
-              type: string
-              example: Something went wrong
+          type: string
+          example: 'Error details'
+    example:
+      status: 500
+      message: 'Something went wrong'
+      data: 'Error details'

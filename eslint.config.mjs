@@ -1,7 +1,8 @@
 import globals from 'globals';
-import { defineConfig } from 'eslint/config';
+import pluginJs from '@eslint/js';
 
-export default defineConfig([
+export default [
+  pluginJs.configs.recommended,
   {
     files: ['src/**/*.js'],
     languageOptions: { globals: globals.node },
@@ -11,4 +12,4 @@ export default defineConfig([
       'no-undef': 'error',
     },
   },
-]);
+];
