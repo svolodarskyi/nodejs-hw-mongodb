@@ -307,12 +307,35 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully updated contact details",
+            "description": "Successfully updated the contact",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/Contact"
-                }
+                    "title": "Updated Contact Response",
+                    "type": "object",
+                    "properties": {
+                      "status": {
+                        "type": "integer",
+                        "example": 201
+                      },
+                      "message": {
+                        "type": "string",
+                        "example": "Contact updated successfully"
+                      },
+                      "data": {
+                        "type": "object",
+                        "properties": {
+                          "id": { "type": "string", "example": "507f1f77bcf86cd799439011" },
+                          "name": { "type": "string", "example": "Jane Doe" },
+                          "email": { "type": "string", "example": "jane.doe@example.com" },
+                          "phoneNumber": { "type": "string", "example": "+987654321" },
+                          "isFavourite": { "type": "boolean", "example": true },
+                          "contactType": { "type": "string", "enum": ["work", "home", "personal"], "example": "personal" },
+                          "photo": { "type": "string", "description": "URL or base64 of the photo", "example": "https://example.com/photo2.jpg" }
+                        }
+                      }
+                    }
+                  }
               }
             }
           },
