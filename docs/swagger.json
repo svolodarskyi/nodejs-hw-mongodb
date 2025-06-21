@@ -193,7 +193,7 @@
                     "properties": {
                       "status": {
                         "type": "integer",
-                        "example": 201
+                        "example": 200
                       },
                       "message": {
                         "type": "string",
@@ -208,7 +208,7 @@
                           "phoneNumber": { "type": "string", "example": "+987654321" },
                           "isFavourite": { "type": "boolean", "example": true },
                           "contactType": { "type": "string", "enum": ["work", "home", "personal"], "example": "personal" },
-                          "photo": { "type": "string", "description": "URL or base64 of the photo", "example": "https://example.com/photo2.jpg" }
+                          "photo": { "type": "string", "description": "URL or base64 of the photo", "example": "null" }
                         }
                       }
                     }
@@ -331,7 +331,7 @@
                           "phoneNumber": { "type": "string", "example": "+987654321" },
                           "isFavourite": { "type": "boolean", "example": true },
                           "contactType": { "type": "string", "enum": ["work", "home", "personal"], "example": "personal" },
-                          "photo": { "type": "string", "description": "URL or base64 of the photo", "example": "https://example.com/photo2.jpg" }
+                          "photo": { "type": "string", "description": "URL or base64 of the photo", "example": "null" }
                         }
                       }
                     }
