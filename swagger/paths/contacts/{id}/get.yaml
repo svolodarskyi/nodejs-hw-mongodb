@@ -63,8 +63,7 @@ responses:
                   type: string
                   format: date-time
                   example: '2025-04-07T12:53:19.153Z'
-  '404':
-    $ref: '../../../components/responses/404.yaml'
+
   '400':
     $ref: '../../../components/responses/400.yaml'
   '401':
