@@ -1,45 +1,58 @@
 type: object
-properties:
-  _id:
-    type: string
-    example: '67f25d39e1935b9687129f29'
-  name:
-    type: string
-    example: 'John Doe'
-  email:
-    type: string
-    example: 'john.doe@example.com'
-  phoneNumber:
-    type: string
-    example: '+123456789'
-  isFavourite:
-    type: boolean
-    example: false
-  contactType:
-    type: string
-    example: 'work'
-  userId:
-    type: string
-    example: '67f22a41875fd7d41ec03fd3'
-  photo:
-    type: string
-    format: binary
-    example: null
-  createdAt:
-    type: string
-    format: date-time
-    example: '2025-04-06T10:53:45.112Z'
-  updatedAt:
-    type: string
-    format: date-time
-    example: '2025-04-06T10:53:45.112Z'
 required:
   - _id
   - name
-  - email
   - phoneNumber
+  - email
   - isFavourite
   - contactType
   - userId
+  - photo
   - createdAt
   - updatedAt
+
+properties:
+  _id:
+    type: string
+    description: Contact id
+    example: 68406392892f281e98de464a
+  name:
+    type: string
+    description: Contact name
+    example: Kateryna Kovalchuk
+  phoneNumber:
+    type: string
+    description: Phone contact
+    example: +3800000000010
+  email:
+    type: string
+    description: Email contact
+    example: andriy7@example.com
+  isFavourite:
+    type: boolean
+    description: Favourite contacts
+    example: false
+  contactType:
+    type: string
+    description: Contact type
+    enum: ['work', 'home', 'personal']
+    example: personal
+  userId:
+    type: string
+    description: Contact userId
+    example: 684164740a83d714dfe66a01
+  photo:
+    type: string
+    format: binary
+    description: Url of contact photo
+    example: https://res.cloudinary.com/dnnpxetem/image/upload/v1749718911/veirmv446v7wttgmqxxv.jpg
+  createdAt:
+    type: string
+    format: date-time
+    description: Contact created at
+    example: 2025-03-27T19:43:21.686+00:00
+  updatedAt:
+    type: string
+    format: date-time
+    description: Contact updated at
+    example: 2025-03-28T19:43:21.686+00:00
