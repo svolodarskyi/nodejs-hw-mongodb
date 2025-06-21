@@ -14,55 +14,24 @@ parameters:
       type: string
 responses:
   '200':
-    description: Request was successful
+    description: Get contact by id
     content:
       application/json:
         schema:
           type: object
+          required:
+            - status
+            - message
+            - data
           properties:
             status:
               type: integer
-              example: 201
+              example: 200
             message:
               type: string
-              example: 'Successfully found contact!'
+              example: Successfully get contact
             data:
-              type: object
-              properties:
-                _id:
-                  type: string
-                  example: '67f3cabf966746f5cc383df4'
-                name:
-                  type: string
-                  example: 'John Doe'
-                phoneNumber:
-                  type: string
-                  example: '+1234567890'
-                email:
-                  type: string
-                  example: 'john.doWWW@example.com'
-                isFavourite:
-                  type: boolean
-                  example: true
-                contactType:
-                  type: string
-                  enum: ['work', 'home', 'personal']
-                  example: 'personal'
-                userId:
-                  type: string
-                  example: '67f22a41875fd7d41ec03fd3'
-                photo:
-                  type: string
-                  format: uri
-                  example: 'https://res.cloudinary.com/dl22iuo55/image/upload/v1744030398/jy3u6b7thbwnfgt2n6jm.webp'
-                createdAt:
-                  type: string
-                  format: date-time
-                  example: '2025-04-07T12:53:19.153Z'
-                updatedAt:
-                  type: string
-                  format: date-time
-                  example: '2025-04-07T12:53:19.153Z'
+              $ref: ../../../components/schemas/Contact.yaml
 
   '400':
     $ref: '../../../components/responses/400.yaml'
